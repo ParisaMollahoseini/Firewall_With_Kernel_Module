@@ -15,28 +15,31 @@ gedit conf.txt
 
 Then we fill it like this:
 
-**blacklist(or whitelist)
-127.0.0.1:53
+**blacklist(or whitelist)**
+
+127.0.0.1:53 
+
 8.8.8.8:80
-...**
+
+...
 
 ### Second we can write user space code named *app_writer.c*
 
 #### What is in app_writer.c
 
-  -Reading from **"conf.txt"**
-  -Store that string in char* named "buf"
-  -Open module file with address **/dev/OS_char_dev** for writing in it
-  -Seperate each line of "buf" with function *strsep*
-  -Send each line to module with write function
-  -Close module file
+  - Reading from **"conf.txt"**
+  - Store that string in char* named "buf"
+  - Open module file with address **/dev/OS_char_dev** for writing in it
+  - Seperate each line of "buf" with function *strsep*
+  - Send each line to module with write function
+  - Close module file
 
 ### Third we write kernel module
 
 ### Module have two parts :
 
-  -Network
-  -Char device
+  - Network
+  - Char device
 
 #### Network part
 
@@ -82,8 +85,11 @@ struct timespec curr_tm;// time of sending log
 ### What is netfilter
 
 It is a subsystem of Linux kernel for filtering network packets .
+
 It is possible to define some hooks in route of packets.
+
 There is 5 points in network that can be chosen for being hook.
+
 
 List of hooks points with their names:
 1. NF_INET_PRE_ROUTING
@@ -101,9 +107,9 @@ When each hook is defined , should decide what to do for following way .
 
 It can make these decision:
 
-  -NF_DROP
-  -NF_ACCEPT
-  -...
+  - NF_DROP
+  - NF_ACCEPT
+  - ...
 
 We just use two first commands.
 
@@ -115,6 +121,7 @@ static unsigned int nf_pre_route_hook( void* priv, struct sk_buff *skb,
 
 ```
 **skb** is used for catching ip , port , protocol , and information about packets.
+
 In this function we will use NF_DROP and NF_ACCEPT commands for filtering packets.
 
 #### We also use nf_hook_ops which has useful functions in it :
@@ -273,8 +280,10 @@ jounalctl -f
 *It shows kernel logs*
 
 3. Open a browser and write an ip or address of the site on it .
-According to type of firewall(black or white) you can see you site will be dropped or accepted in browser or in jounalctl which is opened in second terminal.
+
+According to type of firewall(black or white) you can see you site will be dropped or accepted in browser or in
+jounalctl which is opened in second terminal.
 
 ## Reference
 
-[my github](https://github.com/parisa1377/bootloader).
+[my github](https://github.com/parisa1377/Firewall_With_Kernel_Module).
