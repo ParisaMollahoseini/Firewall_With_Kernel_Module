@@ -15,7 +15,7 @@ int main(){
   int dev = open("/dev/OS_char_dev",O_RDWR);
   if (dev<0)
     printf("error openning the device\n");
-  //sprintf(msg_buff, "first msg to kernel##");
+  
   char *string,*found;
   string=(char*)malloc(400);
   found=(char*)malloc(400);
@@ -27,21 +27,10 @@ int main(){
   write(dev, found, strlen(found)+1);
   while( (found = strsep(&string,"\n")) != NULL )
   {
-    //sleep(1);
+    
       write(dev, found, strlen(found)+1);
       printf("ok\n");
     }
-  //printf("mess : %s\n",message[1] );
-  // char buff[1000];
-  // read(dev, buff, 100);
-  // printf("reading a buffer from kernel module :%s\n", buff);
-
-
-  // sprintf(msg_buff, "second msg to kernel");
-  // write(dev, msg_buff, strlen(msg_buff)+1);
-
-  // bzero(buff, 1000);
-  // read(dev, buff, 100);
-  // printf("reading a buffer from kernel module :%s\n", buff);
+  
   close(dev);
 }
