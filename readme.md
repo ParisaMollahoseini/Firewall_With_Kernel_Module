@@ -287,4 +287,3 @@ jounalctl which is opened in second terminal.
 ## Reference
 [netfiter](http://zaghaghi.blog.ir/1392/10/19/how-to-write-your-own-firewall).
 
-[my github](https://github.com/parisa1377/Firewall_With_Kernel_Module).
